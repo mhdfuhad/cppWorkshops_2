@@ -1,0 +1,17 @@
+//  Workshop 1\
+//
+//  Created by Mohammad Fuhad Uddin on 2021-05-30.\
+//  Seneca ID: 135341196\
+//  Seneca Email: fmohammad15@myseneca.ca\
+//  I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+
+This workshop started off teaching me how the prototype for main can accept arguments, it was possible to add files as arguments through the IDE and so discovered including the file path of the text files as arguments would work to retrieve data from those files. This amongst few more things that I learned was the use of the static keyword in order to have a variable remain in memory for the lifetime of the program and so used this keyword for one of the variables that needed to be a local to function variable for the amount of times it got called through out the lifetime of the program this is helpful as you avoid having too many global variables cluttering the global namespace. 
+
+-the difference between internal and external linkage citing examples from your code
+The difference between internal linkage and external linkage is the accessibility of an identifier in the translation unit, an external linkage has an identifier that is accessible across all the translation units done by having a global variable such as the g_sysClock variable with the extern keyword making it available globally while for an internal linkage the identifier would be accessible in the scope of the translation unit it is declared usually done by using the word static as used in the display function.
+
+-what are static variables and how are they useful in your solution.
+Static variables are variables that stay in memory for the lifetime of the program even if it\'92s a variable that is local to a function the variable will remain in memory within its scope as long as the program is running. The display function required for a variable to remain in memory and increase its count every time the function got called and so a static variable was used there as a counter.
+
+-the changes that you made in upgrading your Event class.
+For varying lengths of the description variable it was changed to a pointer to an array of characters from char eventDesc[128] to char* eventDesc, then as a destructor was needed the rule of three was applied. 

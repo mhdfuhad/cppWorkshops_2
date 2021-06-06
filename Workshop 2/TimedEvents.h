@@ -17,16 +17,15 @@
 namespace sdds {
 
 class TimedEvents{
-    unsigned noOfRecords{0u};
-    std::chrono::steady_clock::time_point startTime;
-    std::chrono::steady_clock::time_point endTime;
+    static unsigned noOfRecords;
+    std::chrono::steady_clock::time_point startTime{};
+    std::chrono::steady_clock::time_point endTime{};
     struct Events{
-        std::string eventName;
-        std::string unitTime;
-        std::chrono::steady_clock::duration eventDuration;
+        std::string eventName{};
+        std::string unitTime{};
+        std::chrono::steady_clock::duration eventDuration{};
     }Events[10];
 public:
-    static unsigned eventCount;
     TimedEvents();
     void startClock();
     void stopClock();

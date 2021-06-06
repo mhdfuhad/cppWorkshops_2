@@ -14,7 +14,7 @@
 using namespace std;
 
 namespace sdds{
-StringSet::StringSet():str{nullptr}, count(0u){};
+StringSet::StringSet():count(0u), str{nullptr}{};
 
 StringSet::StringSet(const char* fileName){
     string dummy;
@@ -34,7 +34,7 @@ size_t StringSet::size() const{
 };
 
 string StringSet::operator[](size_t i) const{
-    return i >= 0 && i < size() && str ? str[i] : "";
+    return i >= 0 && i < size() && str != nullptr ? str[i] : "";
 };
 
 StringSet::StringSet(const StringSet& obj) {
@@ -44,6 +44,7 @@ StringSet::StringSet(const StringSet& obj) {
 StringSet& StringSet::operator=(const StringSet& obj){
     if (this != &obj){
         count = obj.count;
+        str = nullptr;
         delete[] str;
         if (obj.str != nullptr){
             str = new string[count];
@@ -61,6 +62,7 @@ StringSet::StringSet(StringSet&& obj) noexcept {
 
 StringSet& StringSet::operator=(StringSet&& obj) noexcept{
     if (this != &obj){
+        str = nullptr;
         delete[] str;
         str = obj.str;
         count = obj.count;

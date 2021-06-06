@@ -17,7 +17,7 @@
 namespace sdds{
 
 class StringSet{
-    unsigned count{0u};
+    size_t count{0};
     std::string* str;
 public:
     //constructors

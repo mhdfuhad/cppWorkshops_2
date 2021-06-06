@@ -14,24 +14,28 @@ using namespace std;
 
 namespace sdds{
 
-unsigned TimedEvents::eventCount{0u};
+unsigned TimedEvents::noOfRecords{0u};
 
-TimedEvents::TimedEvents(): noOfRecords(0u){};
+TimedEvents::TimedEvents(){};
+
 void TimedEvents::startClock(){
     startTime = chrono::steady_clock::now();
 };
+
 void TimedEvents::stopClock(){
     endTime = chrono::steady_clock::now();
 };
+
 void TimedEvents::addEvent(const char* str){
-    Events[eventCount].eventName = str;
-    Events[eventCount].unitTime = "nanoseconds";
-    Events[eventCount].eventDuration = chrono::duration_cast<std::chrono::nanoseconds>(endTime - startTime);
-    eventCount++;
+    Events[noOfRecords].eventName = str;
+    Events[noOfRecords].unitTime = "nanoseconds";
+    Events[noOfRecords].eventDuration = chrono::duration_cast<std::chrono::nanoseconds>(endTime - startTime);
+    noOfRecords++;
 };
+
 ostream& operator<<(ostream& ostr, const TimedEvents& obj){
     ostr << "--------------------------" << '\n' << "Execution Times:" << '\n' << "--------------------------" << endl;
-    for (unsigned i = 0; i < TimedEvents::eventCount; i++){
+    for (unsigned i = 0; i < TimedEvents::noOfRecords; i++){
         ostr << setw(21) << setiosflags(ios::left) << obj.Events[i].eventName <<
         " " << setw(13) << setiosflags(ios::right) << obj.Events[i].eventDuration.count() <<
         " " << obj.Events[i].unitTime << resetiosflags(ios::right) << endl;

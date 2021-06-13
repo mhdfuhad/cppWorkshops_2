@@ -20,7 +20,7 @@ class TimedEvents{
     static unsigned noOfRecords;
     std::chrono::steady_clock::time_point startTime{};
     std::chrono::steady_clock::time_point endTime{};
-    struct Events{
+    struct{
         std::string eventName{};
         std::string unitTime{};
         std::chrono::steady_clock::duration eventDuration{};

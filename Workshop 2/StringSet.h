@@ -12,20 +12,19 @@
 #define sdds_StringSet_h
 
 #include <string>
-#include <utility>
 
 namespace sdds{
 
 class StringSet{
-    size_t count{0};
+    std::size_t count{0};
     std::string* str;
 public:
     //constructors
     StringSet();
     StringSet(const char* fileName);
     //query members
-    size_t size() const;
-    std::string operator[](size_t i) const;
+    std::size_t size() const;
+    std::string operator[](std::size_t i) const;
     //copy constructor and copy assignment operator
     StringSet(const StringSet& obj);
     StringSet& operator=(const StringSet& obj);

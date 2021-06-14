@@ -17,11 +17,11 @@ namespace sdds{
 
 template<typename V, typename K>
 class PairSummable : public Pair<V, K> {
-    static V init;
+    static V initial;
     static size_t fieldWidth;
 public:
     PairSummable() {};
-    PairSummable(const K& key, const V& value = init):Pair<V,K>(key,value){
+    PairSummable(const K& key, const V& value = initial):Pair<V,K>(key,value){
         if(key.size() > fieldWidth){
             fieldWidth = key.size();
         }
@@ -42,7 +42,7 @@ public:
 };
 
 template<typename V, typename K>
- V PairSummable<V, K>::init{};
+ V PairSummable<V, K>::initial{};
 template<typename V, typename K>
  size_t PairSummable<V, K>::fieldWidth{0};
 

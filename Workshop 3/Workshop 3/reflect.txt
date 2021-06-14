@@ -1,0 +1,8 @@
+//  Workshop 3
+//
+//  Created by Mohammad Fuhad Uddin on 2021-06-13.
+//  Seneca ID: 135341196
+//  Seneca Email: fmohammad15@myseneca.ca
+//  I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+
+In this workshop we went over the use of templates and deriving a templated classes from another templated class. One of the things we've done is not separate the module into a header and an implementation file due to the templated classes, as these templated classes require access to the implementation of the member functions they have to be in the same file which in turn lets the compiler instantiate the template. Furthermore, the two argument PairSummable constructor required the default value of "value" to be a templated variable such as initial as the type can vary and so assigning it a variable of which the type can vary helps to initialize such variables with the right type. We also specialized the operator+= in order to concatenate the items with a comma in between when a specific type is used for example the string type in this workshop, the specialization allowed to explicitly change the operator+= function to give different output when a string type was used. Static data members of a class get defined outside a class in order to have its value not rely on an instance of a class, this further allows access to the variable outside of a class by other class instances. 

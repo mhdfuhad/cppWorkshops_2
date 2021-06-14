@@ -1,0 +1,8 @@
+//  Workshop 2
+//
+//  Created by Mohammad Fuhad Uddin on 2021-06-06.
+//  Seneca ID: 135341196
+//  Seneca Email: fmohammad15@myseneca.ca
+//  I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+
+In this workshop I learned to use the chrono library in order to record times of each event that occurred throughout the lifetime of the program, the times at which the event starts and ends gets recorded into two variables and the duration is calculated through the deduction of the two variables that store the time. The definition of a struct within a class is also a first, this struct within a class can be accessed using dot notation and is known as an anonymous type with the identifier being written after the closing bracket of the struct this creates an instance of such type and so we created an instance of an array of 10 event objects in the workshop. The use of a move constructor was also made in this workshop and due to the TimedEvents module recording the times of the construction, copy and move of objects we could see a significant difference in time taken between the copy and move constructor. The time difference is due to the fact that a move constructor assigns the address of the source object to the new object instead of having to allocate new memory and copying each resource from one object to the other. As done in the workshop the source object being the temporary rvalue that gets assigned to the current object which is the lvalue, the rvalue object then gets emptied.

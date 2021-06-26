@@ -30,13 +30,15 @@ Book::Book(const string& strBook){
     temp = getString(strBook,',');
     m_Country = removeSpaces(temp);
     
+    //insert Price
+    temp = getString(strBook,',');
+    m_Price = stod(removeSpaces(temp));
+    
     //insert Year of Publication
     temp = getString(strBook,',');
     m_Year = stoi(removeSpaces(temp));
     
-    //insert Price
-    temp = getString(strBook,',');
-    m_Price = stod(removeSpaces(temp));
+    
     
     //insert description
     temp = getString(strBook,'\0');
@@ -60,11 +62,12 @@ double& Book::price(){
 };
 
 ostream& operator<<(ostream& ostr,const Book& obj){
-    ostr << right << setw(20) << obj.m_Author;
-    ostr << right << setw(22) << obj.m_Title;
-    ostr << right << setw(5) << obj.m_Country;
-    ostr << setw(4) << obj.m_Year;
-    ostr << left << setw(6) << setprecision(2) << obj.m_Price << endl;
+    ostr << right << setw(20) << obj.m_Author << " | ";
+    ostr << right << setw(22) << obj.m_Title << " | ";
+    ostr << right << setw(5) << obj.m_Country << " | ";
+    ostr << setw(4) << obj.m_Year << " | ";
+    ostr << right << setw(6) << fixed << setprecision(2) << obj.m_Price << " | ";
+    ostr << left << obj.m_Desc << endl;
     
     return ostr;
 };

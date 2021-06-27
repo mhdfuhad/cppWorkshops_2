@@ -3,7 +3,9 @@
 //  Workshop 5
 //
 //  Created by Mohammad Fuhad Uddin on 2021-06-26.
-//
+//  Seneca ID: 135341196
+//  Seneca Email: fmohammad15@myseneca.ca
+//  I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
 
 #ifndef SDDS_Book_h
 #define SDDS_Book_h

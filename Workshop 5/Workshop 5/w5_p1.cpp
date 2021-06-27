@@ -36,7 +36,7 @@ int main(int argc, char** argv)
         if(fin.is_open()){
             while(getline(fin, temp, '\n')){
                 if(temp[0] != '#'){
-                    library[i] = temp;
+                    library[i] = Book(temp);
                     i++;
                 }
             }
@@ -62,7 +62,6 @@ int main(int argc, char** argv)
             obj.price() = obj.price() * gbpToCadRate;
         };
     };
-
 
 	std::cout << "-----------------------------------------\n";
 	std::cout << "The library content\n";

@@ -20,20 +20,20 @@ namespace sdds {
 size_t SpellChecker::CNT[]{0};
 
 SpellChecker::SpellChecker(const char* filename){
-        ifstream fin(filename);
-        if(fin){
-            string temp;
-            size_t i = 0;
-            size_t pos = 0;
-            while(getline(fin, temp, '\n')){
-                m_badWords[i] = temp.substr(0, temp.find_first_of(' '));
-                pos = temp.find_last_of(' ') + 1;
-                m_goodWords[i] = temp.substr(pos, '\n');
-                i++;
-            }
-        }else{
-            throw "Bad file name!";
+    ifstream fin(filename);
+    if(fin.is_open()){
+        string temp;
+        size_t i = 0;
+        size_t pos = 0;
+        while(getline(fin, temp, '\n')){
+            m_badWords[i] = temp.substr(0, temp.find_first_of(' '));
+            pos = temp.find_last_of(' ') + 1;
+            m_goodWords[i] = temp.substr(pos, '\n');
+            i++;
         }
+    }else{
+        throw "Bad file name!";
+    }
 };
 
 void SpellChecker::operator()(std::string& text){

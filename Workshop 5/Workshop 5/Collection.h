@@ -20,7 +20,7 @@ class Collection{
     std::string m_Name{};
     T* arr{nullptr};
     size_t arrSize{0};
-    void (*m_observer)(const Collection<T>&, const T&){nullptr};
+    void (*observer)(const Collection<T>&, const T&){nullptr};
 public:
     Collection(const std::string& name) : m_Name(name) {};
     Collection(const Collection& obj) = delete;
@@ -39,7 +39,7 @@ public:
     };
     
     void setObserver(void (*observer)(const Collection<T>&, const T&)){
-        m_observer = observer;
+        this->observer = observer;
     };
     
     Collection<T>& operator+=(const T& item){
@@ -62,7 +62,7 @@ public:
             delete[] arr;
             arr = temp;
             arrSize++;
-            if(m_observer != nullptr) m_observer(*this, item);
+            if(observer != nullptr) observer(*this, item);
         }
         return *this;
     };

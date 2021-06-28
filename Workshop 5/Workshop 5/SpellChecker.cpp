@@ -3,19 +3,23 @@
 //  Workshop 5
 //
 //  Created by Mohammad Fuhad Uddin on 2021-06-27.
-//
+//  Seneca ID: 135341196
+//  Seneca Email: fmohammad15@myseneca.ca
+//  I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+
 
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <iomanip>
 #include "SpellChecker.h"
 
 using namespace std;
 namespace sdds {
-size_t CNT = 0;
+
+size_t SpellChecker::CNT[]{0};
 
 SpellChecker::SpellChecker(const char* filename){
-    try{
         ifstream fin(filename);
         if(fin){
             string temp;
@@ -24,36 +28,34 @@ SpellChecker::SpellChecker(const char* filename){
             while(getline(fin, temp, '\n')){
                 m_badWords[i] = temp.substr(0, temp.find_first_of(' '));
                 pos = temp.find_last_of(' ') + 1;
-                m_goodWords[i] = temp.substr(pos, '\0');
+                m_goodWords[i] = temp.substr(pos, '\n');
                 i++;
             }
         }else{
             throw "Bad file name!";
         }
-    }
-    catch(const char* msg){
-        cerr << msg << endl;
-    }
-    
 };
 
 void SpellChecker::operator()(std::string& text){
     size_t pos = 0;
-    for(auto i = 0, j = 0; j < noOfWords; i++){
-        pos = text.find(m_badWords[j]);
+    for(unsigned i = 0; i < noOfWords;){
+        pos = text.find(m_badWords[i]);
         if(pos != string::npos){
-            size_t count = text.find(' ', pos) - pos;
-            text.replace(pos, count, m_goodWords[j]);
-            CNT++; //count each instance of replacement
+            size_t count = m_badWords[i].length();
+            text.replace(pos, count, m_goodWords[i]);
+            CNT[i]++; //count each instance of replacement
         }else{
-            j++; //when the mispelled word is not found anymore then move to next bad word
+            i++; //when the mispelled word is not found anymore then move to next bad word for checking
         }
     }
     
 };
 
 void SpellChecker::showStatistics(std::ostream& out) const{
-    
+    out << "Spellchecker Statistics" << endl;
+    for(unsigned i = 0; i < noOfWords; i++){
+        out << right << setw(15) << m_badWords[i] << ": " << CNT[i] << " replacements" << endl;
+    }
 };
 
 

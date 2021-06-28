@@ -63,9 +63,9 @@ double& Book::price(){
 
 ostream& operator<<(ostream& ostr,const Book& obj){
     ostr << right << setw(20) << obj.m_Author << " | ";
-    ostr << right << setw(22) << obj.m_Title << " | ";
-    ostr << right << setw(5) << obj.m_Country << " | ";
-    ostr << setw(4) << obj.m_Year << " | ";
+    ostr << right << setw(22) << obj.title() << " | ";
+    ostr << right << setw(5) << obj.country() << " | ";
+    ostr << setw(4) << obj.year() << " | ";
     ostr << right << setw(6) << fixed << setprecision(2) << obj.m_Price << " | ";
     ostr << left << obj.m_Desc << endl;
     

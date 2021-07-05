@@ -21,7 +21,8 @@ void Autoshop::display(ostream& out) const{
     out << "| Cars in the autoshop!        |" << endl;
     out << "--------------------------------" << endl;
     for(auto i = m_vehicles.begin(); i != m_vehicles.end(); i++){
-        out << *i.display() << endl;
+        (*i)->display(out);
+        out << endl;
     }
     out << "--------------------------------" << endl;
 };

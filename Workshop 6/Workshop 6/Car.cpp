@@ -17,10 +17,6 @@ Car::Car(istream& istr){
     string temp, temp2;
     getline(istr, temp, '\n');
     
-    //insert tag
-    temp2 = getString(temp, ',');
-    m_Maker = removeSpaces(temp2);
-    
     //insert maker
     temp2 = getString(temp, ',');
     m_Maker = removeSpaces(temp2);
@@ -46,8 +42,8 @@ string Car::condition() const{
 
 void Car::display(ostream& out) const{
     out << "| " << right << setw(10) << m_Maker << " | ";
-    out << left << setw(6) << m_Condition << " | ";
-    out << setw(6) << setprecision(2) << fixed << m_TopSpeed << " |";
+    out << left << setw(6) << condition() << " | ";
+    out << setw(6) << setprecision(2) << fixed << topSpeed() << " |";
 };
 
 string Car::removeSpaces(string& str){

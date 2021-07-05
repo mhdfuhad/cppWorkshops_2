@@ -8,14 +8,13 @@
 #ifndef Utilities_h
 #define Utilities_h
 
-#include "Vehicles.h"
+#include <string>
+#include "Vehicle.h"
+#include "Car.h"
 
 namespace sdds{
-
-Vehicle* createInstance(std::istream& in){
-    
-};
-
+std::string removeSpaces(std::string& str);
+Vehicle* createInstance(std::istream& in);
 }
 
 #endif /* Utilities_h */

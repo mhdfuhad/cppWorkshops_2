@@ -2,34 +2,65 @@
 //  Car.cpp
 //  Workshop 6
 //
-//  Created by Mohammad Fuhad Uddin on 2021-07-04.
-//
+//  Created by Mohammad Fuhad Uddin on 2021-06-28.
+//  Seneca ID: 135341196
+//  Seneca Email: fmohammad15@myseneca.ca
+//  I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+
 
 #include <string>
 #include <iostream>
 #include <iomanip>
+#include <sstream>
 #include "Car.h"
+#include "Utilities.h"
 
 using namespace std;
 namespace sdds{
 
-Car::Car(istream& istr){
-    string temp, temp2;
-    getline(istr, temp, '\n');
-    
+Car::Car(istream& in){
+    string temp;
+
     //insert maker
-    temp2 = getString(temp, ',');
-    m_Maker = removeSpaces(temp2);
+    getline(in, temp, ',');
+    temp = getString(temp, ',');
+    m_Maker = removeSpaces(temp);
     
     //insert condition
-    temp2 = getString(temp,',');
-    removeSpaces(temp2);
-    m_Condition =  temp2[0];
+    getline(in, temp, ',');
+    temp = getString(temp,',');
+    removeSpaces(temp);
+    if(empty(temp))
+        m_Condition = 'n';
+    else if(temp[0] != 'n' && temp[0] != 'b' && temp[0] != 'u'){
+        getline(in, temp, '\n');
+        throw string("Invalid record!");
+    }
+    else
+        m_Condition =  temp[0];
     
     //insert top speed
-    temp2 = getString(temp,'\0');
-    m_TopSpeed = stod(removeSpaces(temp2));
-
+    bool found = false;
+    temp = "";
+    char data = '\0';
+    for(int i = 0; !found; i++){
+        in.get(data);
+        if(data == ',' || data == '\n' || !in){ //to stop at a comma allowing to getline until '\n' in racecar module
+            found = true;
+            if(!in)
+                data = '\0'; //for last record of the file
+        }
+        if(!found)
+            temp += data;
+    }
+    temp = getString(temp, data);
+    removeSpaces(temp);
+    if(isNan(temp)){
+        getline(in, temp, '\n');
+        throw string("Invalid record!");
+    }
+    else
+        m_TopSpeed = stod(temp);
 };
 
 double Car::topSpeed() const{
@@ -45,25 +76,5 @@ void Car::display(ostream& out) const{
     out << left << setw(6) << condition() << " | ";
     out << setw(6) << setprecision(2) << fixed << topSpeed() << " |";
 };
-
-string Car::removeSpaces(string& str){
-    str.erase(0, str.find_first_not_of(' '));
-    str.erase(str.find_last_not_of(' ') + 1);
-    return str;
-};
-
-string Car::getString(const string& str, char check){
-    static unsigned long firstPos = 0u;
-    static unsigned long endPos = 0u;
-    unsigned long charCount = 0u;
-    string extracted;
-    
-    endPos = str.find(check, firstPos);
-    charCount = endPos - firstPos;
-    extracted = str.substr(firstPos, charCount);
-    firstPos = endPos + 1;
-    
-    return extracted;
-}
 
 }
